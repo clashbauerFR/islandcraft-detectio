@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islandcraft Client Scanner - Advanced Minecraft Sicherheit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Islandcraft</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Startseite</a></li>
+                <li><a href="#scanner" class="nav-link">Scanner</a></li>
+                <li><a href="#how-it-works" class="nav-link">Funktioniert</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="glitch" data-text="Islandcraft Client Scanner">Islandcraft Client Scanner</h1>
+                    <p class="hero-description">
+                        Fortschrittlicher browserbasierter Sicherheits-Scanner für Minecraft-Clients. 
+                        Erkenne Hacked Clients, Mods und verdächtige Dateien ohne Software-Download.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#scanner" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Scan starten
+                        </a>
+                        <a href="#how-it-works" class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i> Mehr erfahren
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="scanner-animation">
+                        <div class="scan-line"></div>
+                        <div class="scan-grid"></div>
+                        <div class="floating-icons">
+                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-bug"></i>
+                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scanner Section -->
+    <section id="scanner" class="section scanner-section">
+        <div class="container">
+            <h2 class="section-title">Sicherheits-Scanner</h2>
+            <div class="scanner-container">
+                <!-- Upload Area -->
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <h3>Dateien hier ablegen</h3>
+                        <p>oder klicken zum Durchsuchen</p>
+                        <p class="supported-formats">
+                            Unterstützt: .jar, .zip, Ordner und Minecraft Client-Dateien
+                        </p>
+                        <div class="upload-actions">
+                            <button type="button" class="btn btn-secondary" id="selectAllBtn">
+                                <i class="fas fa-folder-open"></i> Ordner auswählen
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="selectMultipleBtn">
+                                <i class="fas fa-files-o"></i> Mehrere Dateien
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="clearSelectionBtn">
+                                <i class="fas fa-times-square"></i> Auswahl löschen
+                            </button>
+                        </div>
+                        <input type="file" id="fileInput" multiple webkitdirectory directory accept=".jar,.zip,application/zip,application/x-java-archive">
+                    </div>
+                </div>
+
+                <!-- Scan Progress -->
+                <div class="scan-progress" id="scanProgress" style="display: none;">
+                    <div class="progress-header">
+                        <h3>Dateien werden gescannt...</h3>
+                        <div class="progress-info">
+                            <span class="progress-percentage" id="progressPercentage">0%</span>
+                            <span class="performance-mode" id="performanceMode" style="display: none;">
+                                <i class="fas fa-tachometer-alt"></i> Großdatei-Modus
+                            </span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="scan-details">
+                        <div class="current-file" id="currentFile">Initialisierung...</div>
+                        <div class="files-count" id="filesCount">0 wichtige Erkennungen gefunden</div>
+                    </div>
+                </div>
+
+                <!-- Scan Logs -->
+                <div class="scan-logs" id="scanLogs" style="display: none;">
+                    <div class="logs-header">
+                        <h3>Scan-Protokoll</h3>
+                        <button class="btn btn-small" id="clearLogs">Löschen</button>
+                    </div>
+                    <div class="logs-content" id="logsContent"></div>
+                </div>
+
+                <!-- Results -->
+                <div class="scan-results" id="scanResults" style="display: none;">
+                    <div class="results-header">
+                        <h3>Scan-Ergebnisse</h3>
+                        <div class="result-summary" id="resultSummary"></div>
+                    </div>
+                    <div class="results-content" id="resultsContent"></div>
+                    <div class="results-actions">
+                        <button class="btn btn-primary" id="exportResults">
+                            <i class="fas fa-download"></i> Ergebnisse exportieren
+                        </button>
+                        <button class="btn btn-secondary" id="scanAgain">
+                            <i class="fas fa-redo"></i> Erneut scannen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <h2 class="section-title">So funktioniert es</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Dateien hochladen</h3>
+                    <p>Ziehe Minecraft Client-Dateien, Ordner oder Archive direkt in deinen Browser.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Lokales Scannen</h3>
+                    <p>Unser JavaScript-Scanner analysiert Dateien lokal in deinem Browser ohne Server-Upload.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Erkennungssystem</h3>
+                    <p>Fortschrittliche Pattern-Matching-Erkennung bekannter Hacked Clients und Sicherheitsbedrohungen.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Detaillierte Berichte</h3>
+                    <p>Erhalte umfassende Sicherheitsberichte mit Risikostufen und Bedrohungserklärungen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title">Häufig gestellte Fragen</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Werden meine Daten auf einen Server hochgeladen?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nein. Das Scannen findet lokal in deinem Browser mit JavaScript statt. Es werden niemals Dateien oder Daten auf unsere Server hochgeladen.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Welche Dateitypen kann ich scannen?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Du kannst .jar-Dateien, .zip-Archive, gesamte Minecraft Client-Ordner und einzelne Mod-Dateien scannen.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Wie genau ist die Erkennung?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Unser Scanner verwendet Pattern-Matching gegen eine umfassende Datenbank bekannter Hacked Clients. Obwohl sehr genau, ist kein System 100% perfekt.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Können falsche Erkennungen auftreten?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ja, einige legitime Mods können Warnungen auslösen. Überprüfe immer den Kontext und die Risikostufe jeder Erkennung.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Islandcraft</span>
+                </div>
+                <p>&copy; 2024 Islandcraft Client Scanner. Fortschrittliche Minecraft-Sicherheitslösungen.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
