@@ -609,9 +609,35 @@ html {
     color: var(--text-primary);
 }
 
+.confidence-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    color: var(--bg-primary);
+    margin-left: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+.severity-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--warning-color), var(--danger-color));
+    color: var(--text-primary);
+    margin-left: 0.5rem;
+}
+
 .result-details {
     color: var(--text-secondary);
     line-height: 1.6;
+}
+
+.result-details strong {
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 .results-actions {
@@ -626,6 +652,112 @@ html {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+}
+
+/* Clients Grid */
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.client-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.client-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.client-card:hover::before {
+    transform: translateX(0);
+}
+
+.client-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+    border-color: var(--primary-color);
+}
+
+.client-card.high-risk {
+    border-left: 4px solid var(--danger-color);
+}
+
+.client-card.medium-risk {
+    border-left: 4px solid var(--warning-color);
+}
+
+.client-card.low-risk {
+    border-left: 4px solid var(--primary-color);
+}
+
+.client-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.client-header h3 {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    margin: 0;
+    flex: 1;
+}
+
+.client-header i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.client-card.high-risk .client-header i {
+    color: var(--danger-color);
+}
+
+.client-card.medium-risk .client-header i {
+    color: var(--warning-color);
+}
+
+.client-card.low-risk .client-header i {
+    color: var(--primary-color);
+}
+
+.client-details p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.detection-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.feature-tag {
+    padding: 0.3rem 0.8rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 500;
 }
 
 .feature-card {
@@ -848,6 +980,10 @@ html {
     }
 
     .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .clients-grid {
         grid-template-columns: 1fr;
     }
 

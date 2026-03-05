@@ -2,33 +2,73 @@
 class IslandcraftScanner {
     constructor() {
         this.knownClients = {
-            'wurst': { name: 'Wurst', risk: 'high', description: 'Beliebter Hacked Client mit umfangreichen Features' },
-            'meteor': { name: 'Meteor', risk: 'high', description: 'Fortgeschrittener Utility Client mit Kampf-Features' },
-            'vape': { name: 'Vape', risk: 'high', description: 'Bezahlter Ghost Client entwickelt zum Umgehen von Anti-Cheat' },
-            'sigma': { name: 'Sigma', risk: 'high', description: 'Feature-reicher Client mit GUI und Modulen' },
-            'impact': { name: 'Impact', risk: 'medium', description: 'Utility Client mit verschiedenen Modulen' },
-            'aristois': { name: 'Aristois', risk: 'medium', description: 'Mod-ähnlicher Client mit vielen Features' },
-            'liquidbounce': { name: 'LiquidBounce', risk: 'high', description: 'Kostenloser Kampf Client mit Bypasses' },
-            'novoline': { name: 'Novoline', risk: 'high', description: 'Kampf-fokussierter Client mit benutzerdefinierter GUI' },
-            'future': { name: 'Future', risk: 'medium', description: 'Client mit verschiedenen Utility-Features' },
-            'konas': { name: 'Konas', risk: 'high', description: 'Fortgeschrittener Client mit ausgefeilten Features' },
-            'killaura': { name: 'KillAura', risk: 'high', description: 'Kampf-Modul gefunden in vielen Clients' },
-            'fly': { name: 'Fly', risk: 'medium', description: 'Bewegungs-Hack für Fliegen' },
-            'speed': { name: 'Speed', risk: 'medium', description: 'Bewegungs-Hack für erhöhte Geschwindigkeit' },
-            'noslow': { name: 'NoSlow', risk: 'medium', description: 'Entfernt Verlangsamungseffekte' },
-            'scaffold': { name: 'Scaffold', risk: 'medium', description: 'Automatische Block-Platzierung' },
-            'xray': { name: 'X-Ray', risk: 'medium', description: 'Erz-Finder und Wallhack' },
-            'antikb': { name: 'AntiKB', risk: 'medium', description: 'Rückstoß-Resistenz' },
-            'reach': { name: 'Reach', risk: 'medium', description: 'Erweiterte Angriffsreichweite' },
-            'crystalaura': { name: 'CrystalAura', risk: 'high', description: 'Automatische Kristall-Platzierung' },
-            'autoclicker': { name: 'AutoClicker', risk: 'medium', description: 'Automatisches Klicken' }
+            'wurst': { name: 'Wurst', risk: 'high', description: 'Beliebter Hacked Client mit umfangreichen Features', signatures: ['wurstclient', 'wurst plus', 'wurst 7.x'] },
+            'meteor': { name: 'Meteor Client', risk: 'high', description: 'Fortgeschrittener Utility Client mit Kampf-Features', signatures: ['meteorclient', 'meteor-rejects', 'meteordevelopment'] },
+            'vape': { name: 'Vape', risk: 'high', description: 'Bezahlter Ghost Client entwickelt zum Umgehen von Anti-Cheat', signatures: ['vape lite', 'vape v4', 'vape client'] },
+            'sigma': { name: 'Sigma', risk: 'high', description: 'Feature-reicher Client mit GUI und Modulen', signatures: ['sigmaclient', 'sigma 5.0', 'sigma client'] },
+            'impact': { name: 'Impact', risk: 'medium', description: 'Utility Client mit verschiedenen Modulen', signatures: ['impactclient', 'impact 4.x', 'impact utility'] },
+            'aristois': { name: 'Aristois', risk: 'medium', description: 'Mod-ähnlicher Client mit vielen Features', signatures: ['aristoisclient', 'aristois mod', 'aristois launcher'] },
+            'liquidbounce': { name: 'LiquidBounce', risk: 'high', description: 'Kostenloser Kampf Client mit Bypasses', signatures: ['liquidbounce', 'liquidbounce 1.8', 'liquidbounce-ng'] },
+            'novoline': { name: 'Novoline', risk: 'high', description: 'Kampf-fokussierter Client mit benutzerdefinierter GUI', signatures: ['novoline', 'novoline client', 'novoline 2.0'] },
+            'future': { name: 'Future', risk: 'medium', description: 'Client mit verschiedenen Utility-Features', signatures: ['futureclient', 'future client', 'future v2'] },
+            'konas': { name: 'Konas', risk: 'high', description: 'Fortgeschrittener Client mit ausgefeilten Features', signatures: ['konas client', 'konas 0.1', 'konas utility'] },
+            'killaura': { name: 'KillAura', risk: 'high', description: 'Kampf-Modul gefunden in vielen Clients', signatures: ['killaura', 'kill aura', 'combat aura'] },
+            'fly': { name: 'Fly', risk: 'medium', description: 'Bewegungs-Hack für Fliegen', signatures: ['fly hack', 'flight', 'no fall damage'] },
+            'speed': { name: 'Speed', risk: 'medium', description: 'Bewegungs-Hack für erhöhte Geschwindigkeit', signatures: ['speed hack', 'super speed', 'movement boost'] },
+            'noslow': { name: 'NoSlow', risk: 'medium', description: 'Entfernt Verlangsamungseffekte', signatures: ['noslow', 'no slow', 'anti slow'] },
+            'scaffold': { name: 'Scaffold', risk: 'medium', description: 'Automatische Block-Platzierung', signatures: ['scaffold', 'tower', 'bridge assist'] },
+            'xray': { name: 'X-Ray', risk: 'medium', description: 'Erz-Finder und Wallhack', signatures: ['xray', 'x-ray', 'ore finder'] },
+            'antikb': { name: 'AntiKB', risk: 'medium', description: 'Rückstoß-Resistenz', signatures: ['antikb', 'anti knockback', 'no velocity'] },
+            'reach': { name: 'Reach', risk: 'medium', description: 'Erweiterte Angriffsreichweite', signatures: ['reach', 'attack range', 'hitbox extender'] },
+            'crystalaura': { name: 'CrystalAura', risk: 'high', description: 'Automatische Kristall-Platzierung', signatures: ['crystalaura', 'crystal aura', 'auto crystal'] },
+            'autoclicker': { name: 'AutoClicker', risk: 'medium', description: 'Automatisches Klicken', signatures: ['autoclicker', 'auto clicker', 'click macro'] },
+            'injector': { name: 'Injector', risk: 'high', description: 'Mod-Injection Tool', signatures: ['injector', 'mod injector', 'jar injector'] },
+            'cheatbreaker': { name: 'CheatBreaker', risk: 'low', description: 'Legitimer FPS-Boost Client', signatures: ['cheatbreaker', 'cb client', 'fps booster'] },
+            'lunar': { name: 'Lunar Client', risk: 'low', description: 'Beliebter legitimer Client', signatures: ['lunarclient', 'lunar client', 'lunar'] },
+            'badlion': { name: 'Badlion Client', risk: 'low', description: 'Legitimer Client mit FPS-Boost', signatures: ['badlionclient', 'badlion client', 'blc'] },
+            'forge': { name: 'Forge Modloader', risk: 'low', description: 'Legitimer Modloader', signatures: ['forge', 'minecraft forge', 'modloader'] },
+            'fabric': { name: 'Fabric Modloader', risk: 'low', description: 'Legitimer Modloader', signatures: ['fabric', 'fabricmc', 'fabric loader'] },
+            'optifine': { name: 'OptiFine', risk: 'low', description: 'Legitimer FPS-Boost Mod', signatures: ['optifine', 'optifine hd', 'fps mod'] }
         };
 
         this.suspiciousKeywords = [
             'hack', 'cheat', 'inject', 'bypass', 'ghost', 'aura', 'killaura',
             'flyhack', 'speedhack', 'xray', 'radar', 'aimbot', 'esp', 'wallhack',
-            'autoclicker', 'macro', 'script', 'exploit', 'crystal', 'scaffold'
+            'autoclicker', 'macro', 'script', 'exploit', 'crystal', 'scaffold',
+            'antikb', 'noslow', 'reach', 'velocity', 'timer', 'step', 'jesus',
+            'freecam', 'nametags', 'tracers', 'chestesp', 'playeresp', 'itemesp'
         ];
+
+        this.advancedSignatures = {
+            // Meteor Client specific signatures
+            meteor: {
+                classPatterns: ['meteordevelopment', 'meteorclient'],
+                filePatterns: ['meteor-client', 'meteorclient.jar'],
+                packagePatterns: ['meteordevelopment.meteorclient'],
+                configPatterns: ['meteor-config.json', 'meteor_modules.txt']
+            },
+            // Wurst Client specific signatures
+            wurst: {
+                classPatterns: ['net.wurstclient', 'wurstclient'],
+                filePatterns: ['wurst-client', 'wurst.jar'],
+                packagePatterns: ['net.wurstclient'],
+                configPatterns: ['wurst-settings.json', 'enabled-hacks.txt']
+            },
+            // Impact Client specific signatures
+            impact: {
+                classPatterns: ['impactclient', 'net.impactdev'],
+                filePatterns: ['impact-client', 'impact.jar'],
+                packagePatterns: ['net.impactdev.impact'],
+                configPatterns: ['impact-config.json']
+            },
+            // Generic hacked client patterns
+            generic: {
+                suspiciousPackages: ['cheat', 'hack', 'client', 'bypass', 'ghost'],
+                suspiciousClasses: ['KillAura', 'FlyHack', 'SpeedHack', 'XRay'],
+                suspiciousMethods: ['onUpdate', 'onRenderTick', 'sendChatMessage'],
+                obfuscatedPatterns: ['class_', 'method_', 'field_']
+            }
+        };
 
         this.scanResults = [];
         this.currentScan = null;
@@ -273,47 +313,76 @@ class IslandcraftScanner {
         const lowerFilename = filename.toLowerCase();
         const lowerContent = content.toLowerCase();
         
-        // Check for known clients
+        // Advanced detection with multiple methods
+        this.performAdvancedDetection(filename, content, parentArchive);
+        
+        // Check for known clients (legacy method)
         for (const [key, client] of Object.entries(this.knownClients)) {
+            const matches = [];
+            
+            // Check main keyword
             if (lowerFilename.includes(key) || lowerContent.includes(key)) {
+                matches.push(key);
+            }
+            
+            // Check signatures
+            if (client.signatures) {
+                for (const signature of client.signatures) {
+                    if (lowerFilename.includes(signature) || lowerContent.includes(signature)) {
+                        matches.push(signature);
+                    }
+                }
+            }
+            
+            if (matches.length > 0) {
                 this.addDetection({
                     type: 'known_client',
                     client: client,
                     filename: filename,
                     parentArchive: parentArchive,
                     risk: client.risk,
-                    matches: [key]
+                    matches: matches,
+                    confidence: this.calculateConfidence(matches, content.length)
                 });
                 return;
             }
         }
 
-        // Check for suspicious keywords
+        // Enhanced suspicious keyword detection
         const foundKeywords = [];
+        const keywordContext = new Map();
+        
         for (const keyword of this.suspiciousKeywords) {
-            if (lowerContent.includes(keyword)) {
+            const regex = new RegExp(keyword, 'gi');
+            const matches = content.match(regex);
+            if (matches) {
                 foundKeywords.push(keyword);
+                keywordContext.set(keyword, matches.length);
             }
         }
 
         if (foundKeywords.length > 0) {
+            const riskLevel = this.calculateRiskLevel(foundKeywords, keywordContext, content.length);
             this.addDetection({
                 type: 'suspicious_content',
                 filename: filename,
                 parentArchive: parentArchive,
-                risk: foundKeywords.length > 3 ? 'high' : foundKeywords.length > 1 ? 'medium' : 'low',
-                keywords: foundKeywords
+                risk: riskLevel,
+                keywords: foundKeywords,
+                context: Object.fromEntries(keywordContext),
+                severity: this.calculateSeverity(foundKeywords, keywordContext)
             });
         }
 
-        // Check for suspicious file patterns
-        if (this.isSuspiciousFilename(lowerFilename)) {
+        // Enhanced suspicious filename detection
+        const suspiciousReason = this.analyzeSuspiciousFilename(lowerFilename);
+        if (suspiciousReason) {
             this.addDetection({
                 type: 'suspicious_filename',
                 filename: filename,
                 parentArchive: parentArchive,
                 risk: 'medium',
-                reason: 'Suspicious filename pattern'
+                reason: suspiciousReason
             });
         }
     }
@@ -327,6 +396,231 @@ class IslandcraftScanner {
         return suspiciousPatterns.some(pattern => pattern.test(filename));
     }
 
+    // Advanced detection methods
+    performAdvancedDetection(filename, content, parentArchive) {
+        const lowerFilename = filename.toLowerCase();
+        const lowerContent = content.toLowerCase();
+        
+        // Check for specific client signatures
+        for (const [clientName, signatures] of Object.entries(this.advancedSignatures)) {
+            if (clientName === 'generic') continue;
+            
+            const detection = this.checkClientSignatures(filename, content, clientName, signatures);
+            if (detection) {
+                this.addDetection({
+                    type: 'advanced_client_detection',
+                    client: this.knownClients[clientName],
+                    filename: filename,
+                    parentArchive: parentArchive,
+                    risk: detection.risk,
+                    matches: detection.matches,
+                    confidence: detection.confidence,
+                    detectionMethod: 'signature_based'
+                });
+                return;
+            }
+        }
+        
+        // Generic pattern detection
+        const genericDetection = this.checkGenericPatterns(filename, content);
+        if (genericDetection) {
+            this.addDetection({
+                type: 'generic_hack_patterns',
+                filename: filename,
+                parentArchive: parentArchive,
+                risk: genericDetection.risk,
+                patterns: genericDetection.patterns,
+                confidence: genericDetection.confidence,
+                detectionMethod: 'pattern_analysis'
+            });
+        }
+    }
+
+    checkClientSignatures(filename, content, clientName, signatures) {
+        const lowerFilename = filename.toLowerCase();
+        const lowerContent = content.toLowerCase();
+        const matches = [];
+        let confidence = 0;
+        
+        // Check file patterns
+        for (const pattern of signatures.filePatterns || []) {
+            if (lowerFilename.includes(pattern)) {
+                matches.push(`file:${pattern}`);
+                confidence += 30;
+            }
+        }
+        
+        // Check class patterns
+        for (const pattern of signatures.classPatterns || []) {
+            if (lowerContent.includes(pattern)) {
+                matches.push(`class:${pattern}`);
+                confidence += 25;
+            }
+        }
+        
+        // Check package patterns
+        for (const pattern of signatures.packagePatterns || []) {
+            if (lowerContent.includes(pattern)) {
+                matches.push(`package:${pattern}`);
+                confidence += 20;
+            }
+        }
+        
+        // Check config patterns
+        for (const pattern of signatures.configPatterns || []) {
+            if (lowerContent.includes(pattern)) {
+                matches.push(`config:${pattern}`);
+                confidence += 15;
+            }
+        }
+        
+        if (matches.length > 0) {
+            const risk = confidence >= 70 ? 'high' : confidence >= 40 ? 'medium' : 'low';
+            return { matches, confidence: Math.min(confidence, 100), risk };
+        }
+        
+        return null;
+    }
+
+    checkGenericPatterns(filename, content) {
+        const lowerFilename = filename.toLowerCase();
+        const lowerContent = content.toLowerCase();
+        const generic = this.advancedSignatures.generic;
+        const patterns = [];
+        let confidence = 0;
+        
+        // Check for suspicious packages
+        for (const pkg of generic.suspiciousPackages) {
+            const regex = new RegExp(`package\\s+[^\\s]*${pkg}`, 'gi');
+            if (regex.test(content)) {
+                patterns.push(`suspicious_package:${pkg}`);
+                confidence += 20;
+            }
+        }
+        
+        // Check for suspicious class names
+        for (const cls of generic.suspiciousClasses) {
+            const regex = new RegExp(`class\\s+${cls}\\b`, 'gi');
+            if (regex.test(content)) {
+                patterns.push(`suspicious_class:${cls}`);
+                confidence += 25;
+            }
+        }
+        
+        // Check for suspicious method names
+        for (const method of generic.suspiciousMethods) {
+            const regex = new RegExp(`\\b${method}\\s*\\(`, 'gi');
+            if (regex.test(content)) {
+                patterns.push(`suspicious_method:${method}`);
+                confidence += 15;
+            }
+        }
+        
+        // Check for obfuscated code patterns
+        for (const pattern of generic.obfuscatedPatterns) {
+            const regex = new RegExp(pattern + '[a-zA-Z0-9_]+', 'g');
+            const matches = content.match(regex);
+            if (matches && matches.length > 5) {
+                patterns.push(`obfuscated_code:${matches.length} occurrences`);
+                confidence += 30;
+            }
+        }
+        
+        if (patterns.length > 0) {
+            const risk = confidence >= 60 ? 'high' : confidence >= 30 ? 'medium' : 'low';
+            return { patterns, confidence: Math.min(confidence, 100), risk };
+        }
+        
+        return null;
+    }
+
+    calculateConfidence(matches, contentLength) {
+        let confidence = 0;
+        
+        // Base confidence from number of matches
+        confidence += matches.length * 20;
+        
+        // Bonus for specific signatures
+        for (const match of matches) {
+            if (match.includes('meteor') || match.includes('wurst') || match.includes('vape')) {
+                confidence += 30;
+            }
+        }
+        
+        // Adjust based on content length (longer content with matches = higher confidence)
+        if (contentLength > 10000 && matches.length > 2) {
+            confidence += 10;
+        }
+        
+        return Math.min(confidence, 100);
+    }
+
+    calculateRiskLevel(keywords, keywordContext, contentLength) {
+        const keywordCount = keywords.length;
+        const totalOccurrences = Array.from(keywordContext.values()).reduce((sum, count) => sum + count, 0);
+        
+        // High risk conditions
+        if (keywordCount >= 5 || totalOccurrences >= 10) {
+            return 'high';
+        }
+        
+        // Medium risk conditions
+        if (keywordCount >= 3 || totalOccurrences >= 5) {
+            return 'medium';
+        }
+        
+        // Check for high-risk keywords
+        const highRiskKeywords = ['killaura', 'flyhack', 'speedhack', 'xray', 'crystalaura'];
+        const hasHighRisk = keywords.some(keyword => highRiskKeywords.includes(keyword));
+        
+        if (hasHighRisk && keywordCount >= 2) {
+            return 'high';
+        }
+        
+        return 'low';
+    }
+
+    calculateSeverity(keywords, keywordContext) {
+        let severity = 0;
+        
+        // Calculate severity based on keyword danger level and frequency
+        const dangerLevels = {
+            'killaura': 10, 'flyhack': 8, 'speedhack': 7, 'xray': 6,
+            'crystalaura': 9, 'antikb': 5, 'reach': 4, 'scaffold': 6,
+            'autoclicker': 3, 'hack': 5, 'cheat': 5, 'inject': 8
+        };
+        
+        for (const [keyword, count] of keywordContext) {
+            const dangerLevel = dangerLevels[keyword] || 1;
+            severity += dangerLevel * count;
+        }
+        
+        return Math.min(severity, 100);
+    }
+
+    analyzeSuspiciousFilename(filename) {
+        const suspiciousPatterns = [
+            { pattern: /hack/i, reason: 'Contains "hack" in filename' },
+            { pattern: /cheat/i, reason: 'Contains "cheat" in filename' },
+            { pattern: /inject/i, reason: 'Contains "inject" in filename' },
+            { pattern: /bypass/i, reason: 'Contains "bypass" in filename' },
+            { pattern: /crack/i, reason: 'Contains "crack" in filename' },
+            { pattern: /mod.*hack/i, reason: 'Contains mod and hack references' },
+            { pattern: /hack.*mod/i, reason: 'Contains hack and mod references' },
+            { pattern: /client.*hack/i, reason: 'Contains client and hack references' },
+            { pattern: /aura$/i, reason: 'Ends with "aura" (common hack module)' },
+            { pattern: /^[a-z]{1,3}hack$/i, reason: 'Short hack name pattern' }
+        ];
+        
+        for (const { pattern, reason } of suspiciousPatterns) {
+            if (pattern.test(filename)) {
+                return reason;
+            }
+        }
+        
+        return null;
+    }
+
     addDetection(detection) {
         this.scanResults.push(detection);
         
@@ -338,11 +632,18 @@ class IslandcraftScanner {
 
         let message = `ERKENNUNG: ${detection.filename}`;
         
-        if (detection.type === 'known_client') {
-            message += ` - Bekannter Client: ${detection.client.name}`;
+        if (detection.type === 'known_client' || detection.type === 'advanced_client_detection') {
+            const clientName = detection.client ? detection.client.name : 'Unknown Client';
+            const confidence = detection.confidence ? ` (${detection.confidence}% confidence)` : '';
+            message += ` - ${clientName} Erkannt${confidence}`;
             this.addLog(message, riskColor);
         } else if (detection.type === 'suspicious_content') {
-            message += ` - Verdächtige Keywords: ${detection.keywords.join(', ')}`;
+            const severity = detection.severity ? ` [Severity: ${detection.severity}]` : '';
+            message += ` - Verdächtige Keywords: ${detection.keywords.join(', ')}${severity}`;
+            this.addLog(message, riskColor);
+        } else if (detection.type === 'generic_hack_patterns') {
+            const confidence = detection.confidence ? ` (${detection.confidence}% confidence)` : '';
+            message += ` - Generische Hack-Muster${confidence}`;
             this.addLog(message, riskColor);
         } else if (detection.type === 'suspicious_filename') {
             message += ` - ${detection.reason}`;
@@ -454,22 +755,38 @@ class IslandcraftScanner {
         let title = '';
         let details = '';
 
-        if (result.type === 'known_client') {
-            title = `<i class="fas fa-exclamation-triangle"></i> ${result.client.name} Erkannt`;
+        if (result.type === 'known_client' || result.type === 'advanced_client_detection') {
+            const clientName = result.client ? result.client.name : 'Unknown Client';
+            const detectionType = result.type === 'advanced_client_detection' ? ' (Erweiterte Erkennung)' : '';
+            const confidence = result.confidence ? `<span class="confidence-badge">${result.confidence}% Vertrauen</span>` : '';
+            title = `<i class="fas fa-exclamation-triangle"></i> ${clientName} Erkannt${detectionType} ${confidence}`;
             details = `
                 <strong>Datei:</strong> ${result.filename}<br>
                 ${result.parentArchive ? `<strong>Archiv:</strong> ${result.parentArchive}<br>` : ''}
                 <strong>Risikostufe:</strong> ${result.risk.toUpperCase()}<br>
-                <strong>Beschreibung:</strong> ${result.client.description}<br>
-                <strong>Übereinstimmungen:</strong> ${result.matches.join(', ')}
+                <strong>Beschreibung:</strong> ${result.client ? result.client.description : 'Keine Beschreibung verfügbar'}<br>
+                <strong>Übereinstimmungen:</strong> ${result.matches ? result.matches.join(', ') : 'Keine'}<br>
+                ${result.detectionMethod ? `<strong>Erkennungsmethode:</strong> ${result.detectionMethod}` : ''}
             `;
         } else if (result.type === 'suspicious_content') {
-            title = `<i class="fas fa-search"></i> Verdächtiger Inhalt gefunden`;
+            const severity = result.severity ? `<span class="severity-badge">Schwere: ${result.severity}</span>` : '';
+            title = `<i class="fas fa-search"></i> Verdächtiger Inhalt gefunden ${severity}`;
             details = `
                 <strong>Datei:</strong> ${result.filename}<br>
                 ${result.parentArchive ? `<strong>Archiv:</strong> ${result.parentArchive}<br>` : ''}
                 <strong>Risikostufe:</strong> ${result.risk.toUpperCase()}<br>
-                <strong>Verdächtige Keywords:</strong> ${result.keywords.join(', ')}
+                <strong>Verdächtige Keywords:</strong> ${result.keywords.join(', ')}<br>
+                ${result.context ? `<strong>Kontext:</strong> ${JSON.stringify(result.context)}` : ''}
+            `;
+        } else if (result.type === 'generic_hack_patterns') {
+            const confidence = result.confidence ? `<span class="confidence-badge">${result.confidence}% Vertrauen</span>` : '';
+            title = `<i class="fas fa-code"></i> Generische Hack-Muster erkannt ${confidence}`;
+            details = `
+                <strong>Datei:</strong> ${result.filename}<br>
+                ${result.parentArchive ? `<strong>Archiv:</strong> ${result.parentArchive}<br>` : ''}
+                <strong>Risikostufe:</strong> ${result.risk.toUpperCase()}<br>
+                <strong>Muster:</strong> ${result.patterns.join(', ')}<br>
+                ${result.detectionMethod ? `<strong>Erkennungsmethode:</strong> ${result.detectionMethod}` : ''}
             `;
         } else if (result.type === 'suspicious_filename') {
             title = `<i class="fas fa-file"></i> Verdächtiger Dateiname`;

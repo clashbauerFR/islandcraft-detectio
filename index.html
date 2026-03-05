@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islandcraft Client Scanner - Advanced Minecraft Sicherheit</title>
+    <title>Islandcraft Advanced ClientGuard - Pro-Level Minecraft Security</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -19,6 +19,7 @@
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Startseite</a></li>
                 <li><a href="#scanner" class="nav-link">Scanner</a></li>
+                <li><a href="#detected-clients" class="nav-link">Erkannte Clients</a></li>
                 <li><a href="#how-it-works" class="nav-link">Funktioniert</a></li>
                 <li><a href="#faq" class="nav-link">FAQ</a></li>
             </ul>
@@ -35,10 +36,9 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="glitch" data-text="Islandcraft Client Scanner">Islandcraft Client Scanner</h1>
+                    <h1 class="glitch" data-text="Islandcraft Advanced ClientGuard">Islandcraft Advanced ClientGuard</h1>
                     <p class="hero-description">
-                        Fortschrittlicher browserbasierter Sicherheits-Scanner für Minecraft-Clients. 
-                        Erkenne Hacked Clients, Mods und verdächtige Dateien ohne Software-Download.
+                        Professionelle clientseitige Sicherheitserkennung für Minecraft. Erkennt Meteor Client, Wurst, Vape, Sigma und 20+ weitere Hacked Clients mit fortschrittlicher Signatur-Analyse.
                     </p>
                     <div class="hero-buttons">
                         <a href="#scanner" class="btn btn-primary">
@@ -77,7 +77,8 @@
                         <h3>Dateien hier ablegen</h3>
                         <p>oder klicken zum Durchsuchen</p>
                         <p class="supported-formats">
-                            Unterstützt: .jar, .zip, Ordner und Minecraft Client-Dateien
+                            Unterstützt: .jar, .zip, Ordner und Minecraft Client-Dateien<br>
+                            <strong>Erkennt:</strong> Meteor Client, Wurst, Vape, Sigma, Impact, LiquidBounce und mehr
                         </p>
                         <div class="upload-actions">
                             <button type="button" class="btn btn-secondary" id="selectAllBtn">
@@ -137,6 +138,138 @@
                         <button class="btn btn-secondary" id="scanAgain">
                             <i class="fas fa-redo"></i> Erneut scannen
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detected Clients Section -->
+    <section id="detected-clients" class="section">
+        <div class="container">
+            <h2 class="section-title">Erkannte Clients</h2>
+            <div class="clients-grid">
+                <div class="client-card high-risk">
+                    <div class="client-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Meteor Client</h3>
+                        <span class="risk-badge high">HOHES RISIKO</span>
+                    </div>
+                    <div class="client-details">
+                        <p>Fortgeschrittener Utility Client mit umfangreichen Kampf-Features und Bypass-Fähigkeiten.</p>
+                        <div class="detection-features">
+                            <span class="feature-tag">Signature-Based Detection</span>
+                            <span class="feature-tag">Package Analysis</span>
+                            <span class="feature-tag">Config Detection</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-card high-risk">
+                    <div class="client-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Wurst Client</h3>
+                        <span class="risk-badge high">HOHES RISIKO</span>
+                    </div>
+                    <div class="client-details">
+                        <p>Einer der bekanntesten Hacked Clients mit über 200+ Hacks und Modulen.</p>
+                        <div class="detection-features">
+                            <span class="feature-tag">Class Pattern Matching</span>
+                            <span class="feature-tag">Signature Detection</span>
+                            <span class="feature-tag">File Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-card high-risk">
+                    <div class="client-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Vape Client</h3>
+                        <span class="risk-badge high">HOHES RISIKO</span>
+                    </div>
+                    <div class="client-details">
+                        <p>Bezahlter Ghost Client, entwickelt zum Umgehen von Anti-Cheat Systemen.</p>
+                        <div class="detection-features">
+                            <span class="feature-tag">Injection Detection</span>
+                            <span class="feature-tag">Behavior Analysis</span>
+                            <span class="feature-tag">Signature Scanning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-card high-risk">
+                    <div class="client-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Sigma Client</h3>
+                        <span class="risk-badge high">HOHES RISIKO</span>
+                    </div>
+                    <div class="client-details">
+                        <p>Feature-reicher Client mit GUI und vielen Anpassungsmöglichkeiten.</p>
+                        <div class="detection-features">
+                            <span class="feature-tag">GUI Detection</span>
+                            <span class="feature-tag">Module Analysis</span>
+                            <span class="feature-tag">Pattern Matching</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-card medium-risk">
+                    <div class="client-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Impact Client</h3>
+                        <span class="risk-badge medium">MITTLERES RISIKO</span>
+                    </div>
+                    <div class="client-details">
+                        <p>Utility Client mit verschiedenen Modulen und Funktionen.</p>
+                        <div class="detection-features">
+                            <span class="feature-tag">Utility Detection</span>
+                            <span class="feature-tag">Module Scanning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-card medium-risk">
+                    <div class="client-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>LiquidBounce</h3>
+                        <span class="risk-badge high">HOHES RISIKO</span>
+                    </div>
+                    <div class="client-details">
+                        <p>Kostenloser Kampf Client mit vielen Bypass-Fähigkeiten.</p>
+                        <div class="detection-features">
+                            <span class="feature-tag">Combat Detection</span>
+                            <span class="feature-tag">Bypass Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-card low-risk">
+                    <div class="client-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Lunar Client</h3>
+                        <span class="risk-badge low">GERINGES RISIKO</span>
+                    </div>
+                    <div class="client-details">
+                        <p>Legitimer Client mit FPS-Boost und erlaubten Modifikationen.</p>
+                        <div class="detection-features">
+                            <span class="feature-tag">Whitelisted</span>
+                            <span class="feature-tag">Legitimate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-card low-risk">
+                    <div class="client-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Badlion Client</h3>
+                        <span class="risk-badge low">GERINGES RISIKO</span>
+                    </div>
+                    <div class="client-details">
+                        <p>Legitimer Client mit FPS-Boost und approved Mods.</p>
+                        <div class="detection-features">
+                            <span class="feature-tag">Whitelisted</span>
+                            <span class="feature-tag">Tournament Approved</span>
+                        </div>
                     </div>
                 </div>
             </div>
